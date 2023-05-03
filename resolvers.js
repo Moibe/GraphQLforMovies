@@ -29,8 +29,9 @@ const resolvers = {
       
         // Calcular la similitud de Jaccard entre los géneros preferidos del usuario y los géneros de cada película
         const similarityScores = movies.map((movie) => {
+            //Asumiré que una película puede tener varios generos y para no modificar el schema, los separaré por comas.
           const movieGenres = new Set(movie.genre.split(", "));
-          const userGenres = new Set(user.preferredGenres);
+          const userGenres = new Set(user.preferredGenres.split(", "));
           const intersectionSize = new Set(
             [...movieGenres].filter((genre) => userGenres.has(genre))
           ).size;
